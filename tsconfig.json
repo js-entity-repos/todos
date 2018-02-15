@@ -1,0 +1,23 @@
+{
+  "extends": "./node_modules/@ht2-labs/typescript-project/configs/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "jsx": "react",
+    "typeRoots": [
+      "./@types",
+      "./node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  },
+  "includes": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist/**/*"
+  ]
+}
