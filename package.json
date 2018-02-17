@@ -20,7 +20,8 @@
     "cover": "nyc npm test",
     "duplication": "jscpd",
     "clean": "rimraf dist .cache",
-    "semantic-release": "ht2-release-public-circleci-lib"
+    "semantic-release": "ht2-release-public-circleci-lib",
+    "ghpages": "node scripts/ghpages.js"
   },
   "nyc": {
     "lines": 100,
@@ -42,6 +43,7 @@
     "@types/react": "16.0.38",
     "@types/react-dom": "16.0.4",
     "assert-rejects": "0.1.1",
+    "gh-pages": "1.1.0",
     "jscpd": "0.6.17",
     "mocha": "5.0.1",
     "nyc": "11.4.1",

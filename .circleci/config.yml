@@ -39,3 +39,10 @@ jobs:
       - deploy:
           name: Semantic Release
           command: npm run semantic-release
+      - deploy:
+          name: Github Pages
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run ghpages
+            fi
+
