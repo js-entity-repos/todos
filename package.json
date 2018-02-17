@@ -30,7 +30,6 @@
   "dependencies": {
     "@js-entity-repos/core": "^6.0.2",
     "@js-entity-repos/memory": "^3.0.1",
-    "async-reactor": "^1.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "todomvc-app-css": "^2.1.0"
