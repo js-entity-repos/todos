@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as dom from 'react-dom';
+import { State } from '../repo/FactoryConfig';
 import observer from '../utils/observer';
 import App from './App';
 
