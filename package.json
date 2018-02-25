@@ -30,6 +30,7 @@
   "dependencies": {
     "@js-entity-repos/core": "^6.0.2",
     "@js-entity-repos/memory": "^3.0.1",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "todomvc-app-css": "^2.1.0"
@@ -39,6 +40,7 @@
     "@ht2-labs/typescript-project": "1.0.9",
     "@types/mocha": "2.2.48",
     "@types/power-assert": "1.4.29",
+    "@types/prop-types": "15.5.2",
     "@types/react": "16.0.38",
     "@types/react-dom": "16.0.4",
     "assert-rejects": "0.1.1",

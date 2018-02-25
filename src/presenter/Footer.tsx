@@ -1,14 +1,9 @@
 import * as React from 'react';
-import Service from '../service/Facade';
 import AsyncConnect from './utils/AsyncConnect';
 
-export interface Props {
-  readonly service: Service;
-}
-
-export default ({ service }: Props) => {
+export default () => {
   return (
-    <AsyncConnect service={service} render={async () => {
+    <AsyncConnect render={async ({ service }) => {
       const route = service.getRoute();
       const completeCount = await service.getCompleteCount();
       const incompleteCount = await service.getIncompleteCount();

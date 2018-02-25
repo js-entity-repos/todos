@@ -1,31 +1,36 @@
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import Service from '../../service/Facade';
-import observer from '../../utils/observer';
 
-export interface Props {
+export interface ChildProps {
   readonly service: Service;
-  readonly render: () => JSX.Element;
 }
 
-export interface State {
-  readonly change: Date;
+export interface Props {
+  readonly render: (props: ChildProps) => JSX.Element;
 }
 
 // tslint:disable:no-class no-this
-export default class Connect extends React.Component<Props, State> {
+export default class SyncConnect extends React.Component<Props, {}> {
+  public static readonly contextTypes = {
+    observer: PropTypes.any.isRequired,
+    service: PropTypes.any.isRequired,
+  };
+
   public componentDidMount() {
-    observer.addListener('change', this.update.bind(this));
+    this.context.observer.addListener('change', this.update.bind(this));
   }
 
   public componentWillUnmount() {
-    observer.removeListener('change', this.update.bind(this));
+    this.context.observer.removeListener('change', this.update.bind(this));
   }
 
   private async update() {
-    this.setState({ change: new Date() });
+    this.setState({});
   }
 
   public render() {
-    return this.props.render();
+    const service = this.context.service;
+    return this.props.render({ service });
   }
 }

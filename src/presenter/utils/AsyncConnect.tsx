@@ -1,14 +1,17 @@
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import Service from '../../service/Facade';
-import observer from '../../utils/observer';
 
 const loader = () => {
   return <span>Loading</span>;
 };
 
-export interface Props {
+export interface ChildProps {
   readonly service: Service;
-  readonly render: () => Promise<JSX.Element>;
+}
+
+export interface Props {
+  readonly render: (props: ChildProps) => Promise<JSX.Element>;
 }
 
 export interface State {
@@ -17,14 +20,19 @@ export interface State {
 
 // tslint:disable:no-class no-this
 export default class AsyncConnect extends React.Component<Props, State> {
-  constructor(p: Props, s: State) {
-    super(p, s);
+  public static readonly contextTypes = {
+    observer: PropTypes.any.isRequired,
+    service: PropTypes.any.isRequired,
+  };
+
+  constructor(p: Props, c: any) {
+    super(p, c);
     const renderedComponent = loader();
     this.state = { renderedComponent };
   }
 
   public componentDidMount() {
-    observer.addListener('change', this.update.bind(this));
+    this.context.observer.addListener('change', this.update.bind(this));
     this.update().catch((err) => {
       // tslint:disable-next-line:no-console
       console.error(err);
@@ -32,11 +40,12 @@ export default class AsyncConnect extends React.Component<Props, State> {
   }
 
   public componentWillUnmount() {
-    observer.removeListener('change', this.update.bind(this));
+    this.context.observer.removeListener('change', this.update.bind(this));
   }
 
   private async update() {
-    const renderedComponent = await this.props.render();
+    const service = this.context.service;
+    const renderedComponent = await this.props.render({ service });
     this.setState({ renderedComponent });
   }
 

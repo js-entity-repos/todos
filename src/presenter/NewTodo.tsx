@@ -1,16 +1,11 @@
 import * as React from 'react';
-import Service from '../service/Facade';
 import SyncConnect from './utils/SyncConnect';
 
 const enterKey = 13;
 
-export interface Props {
-  readonly service: Service;
-}
-
-export default ({ service }: Props) => {
+export default () => {
   return (
-    <SyncConnect service={service} render={() => {
+    <SyncConnect render={({ service }): JSX.Element => {
       const newTodoTitle = service.getNewTodoTitle();
 
       return (

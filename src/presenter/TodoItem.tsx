@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Service from '../service/Facade';
 import TodoEntity from '../utils/TodoEntity';
 import SyncConnect from './utils/SyncConnect';
 
@@ -8,13 +7,11 @@ const escapeKey = 27;
 
 export interface Props {
   readonly todo: TodoEntity;
-  readonly key: string;
-  readonly service: Service;
 }
 
-export default ({ todo, service }: Props) => {
+export default ({ todo }: Props) => {
   return (
-    <SyncConnect service={service} render={() => {
+    <SyncConnect render={({ service }) => {
       const isEditing = service.getIsEditing(todo.id);
       const editedTitle = service.getEditedTitle(todo.id);
 

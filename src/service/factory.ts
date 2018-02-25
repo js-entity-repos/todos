@@ -11,8 +11,9 @@ export default ({ repo }: FactoryConfig): Facade => {
       const id = (Math.random() * seed).toString();
       const title = repo.getNewTodoTitle();
       const completed = false;
+      const createdAt = new Date();
       await repo.todos.createEntity({
-        entity: { completed, id, title },
+        entity: { completed, id, title, createdAt },
         id,
       });
     },
@@ -45,13 +46,14 @@ export default ({ repo }: FactoryConfig): Facade => {
     },
     getRouteTodos: async () => {
       const route = repo.getRoute();
+      const sort = { createdAt: false };
       if (route === 'active') {
-        return (await repo.todos.getEntities({ filter: { completed: false } })).entities;
+        return (await repo.todos.getEntities({ sort, filter: { completed: false } })).entities;
       }
       if (route === 'completed') {
-        return (await repo.todos.getEntities({ filter: { completed: true } })).entities;
+        return (await repo.todos.getEntities({ sort, filter: { completed: true } })).entities;
       }
-      return (await repo.todos.getEntities({})).entities;
+      return (await repo.todos.getEntities({ sort })).entities;
     },
     removeTodo: async (id) => {
       await repo.todos.removeEntity({ id });
