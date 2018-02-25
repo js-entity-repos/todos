@@ -10,7 +10,7 @@ export interface Props {
 }
 
 // tslint:disable:no-class no-this
-export default class ConnectProvider extends React.Component<Props, {}> {
+export default class ConnectProvider extends React.Component<Props> {
   public static readonly childContextTypes = {
     observer: PropTypes.any.isRequired,
     service: PropTypes.any.isRequired,

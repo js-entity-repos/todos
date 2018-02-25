@@ -11,7 +11,7 @@ export interface Props {
 }
 
 // tslint:disable:no-class no-this
-export default class SyncConnect extends React.Component<Props, {}> {
+export default class SyncConnect extends React.Component<Props> {
   public static readonly contextTypes = {
     observer: PropTypes.any.isRequired,
     service: PropTypes.any.isRequired,
