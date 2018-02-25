@@ -1,8 +1,7 @@
-import * as React from 'react';
 import * as dom from 'react-dom';
 import { State } from '../repo/FactoryConfig';
 import observer from '../utils/observer';
-import App from './App';
+import app from './app';
 
 const initialState: State = {
   editedTitles: {},
@@ -30,6 +29,6 @@ const patchState = (patch: Partial<State>) => {
 };
 
 dom.render(
-  <App repo={{ getState, patchState }} />,
+  app({ repo: { getState, patchState } }),
   document.getElementsByClassName('todoapp')[0],
 );
