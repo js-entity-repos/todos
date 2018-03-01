@@ -41,7 +41,7 @@
     "@types/mocha": "2.2.48",
     "@types/power-assert": "1.4.29",
     "@types/prop-types": "15.5.2",
-    "@types/react": "16.0.39",
+    "@types/react": "16.0.40",
     "@types/react-dom": "16.0.4",
     "assert-rejects": "0.1.1",
     "gh-pages": "1.1.0",
