@@ -70,7 +70,7 @@ export default ({ repo }: FactoryConfig) => {
     setIsEditing: (id: string, isEditing: boolean) => {
       repo.setIsEditing(id, isEditing);
     },
-    setRoute: async (route: string) => {
+    setRoute: (route: string) => {
       repo.setRoute(route);
     },
     setTodoCompletion: async (id: string, completed: boolean) => {
