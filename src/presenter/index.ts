@@ -1,7 +1,5 @@
 import * as dom from 'react-dom';
 import app from './app';
 
-dom.render(
-  app(),
-  document.getElementsByClassName('todoapp')[0],
-);
+const element = document.getElementsByClassName('todoapp')[0];
+dom.render(app(), element);
