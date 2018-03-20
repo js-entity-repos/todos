@@ -1,9 +1,15 @@
-import Facade from './Facade';
-import FactoryConfig from './FactoryConfig';
+import Sort from '@js-entity-repos/core/dist/types/Sort';
+import { desc } from '@js-entity-repos/core/dist/types/SortOrder';
+import repoFactory from '../repo/factory';
+import TodoEntity from '../utils/TodoEntity';
 
-export default ({ repo }: FactoryConfig): Facade => {
+export interface FactoryConfig {
+  readonly repo: ReturnType<typeof repoFactory>;
+}
+
+export default ({ repo }: FactoryConfig) => {
   return {
-    changeNewTodoTitle: (title) => {
+    changeNewTodoTitle: (title: string) => {
       repo.setNewTodoTitle(title);
     },
     createNewTodo: async () => {
@@ -27,7 +33,7 @@ export default ({ repo }: FactoryConfig): Facade => {
         filter: { completed: true },
       })).count;
     },
-    getEditedTitle: (id) => {
+    getEditedTitle: (id: string) => {
       return repo.getEditedTitle(id);
     },
     getIncompleteCount: async () => {
@@ -35,7 +41,7 @@ export default ({ repo }: FactoryConfig): Facade => {
         filter: { completed: false },
       })).count;
     },
-    getIsEditing: (id) => {
+    getIsEditing: (id: string) => {
       return repo.getIsEditing(id);
     },
     getNewTodoTitle: () => {
@@ -46,7 +52,7 @@ export default ({ repo }: FactoryConfig): Facade => {
     },
     getRouteTodos: async () => {
       const route = repo.getRoute();
-      const sort = { createdAt: false };
+      const sort: Sort<TodoEntity> = { createdAt: desc };
       if (route === 'active') {
         return (await repo.todos.getEntities({ sort, filter: { completed: false } })).entities;
       }
@@ -55,22 +61,22 @@ export default ({ repo }: FactoryConfig): Facade => {
       }
       return (await repo.todos.getEntities({ sort })).entities;
     },
-    removeTodo: async (id) => {
+    removeTodo: async (id: string) => {
       await repo.todos.removeEntity({ id });
     },
-    setEditedTitle: (id, title) => {
+    setEditedTitle: (id: string, title: string) => {
       repo.setEditedTitle(id, title);
     },
-    setIsEditing: (id, isEditing) => {
+    setIsEditing: (id: string, isEditing: boolean) => {
       repo.setIsEditing(id, isEditing);
     },
-    setRoute: async (route) => {
+    setRoute: async (route: string) => {
       repo.setRoute(route);
     },
-    setTodoCompletion: async (id, completed) => {
+    setTodoCompletion: async (id: string, completed: boolean) => {
       await repo.todos.patchEntity({ id, patch: { completed } });
     },
-    setTodoTitle: async (id, title) => {
+    setTodoTitle: async (id: string, title: string) => {
       await repo.todos.patchEntity({ id, patch: { id, title } });
     },
   };

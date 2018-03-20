@@ -1,9 +1,15 @@
+import { EventEmitter } from 'events';
 import * as React from 'react';
-import FactoryConfig from './FactoryConfig';
+import serviceFactory from '../service/factory';
 import Footer from './Footer';
 import NewTodo from './NewTodo';
 import TodoItems from './TodoItems';
 import ConnectProvider from './utils/ConnectProvider';
+
+export interface FactoryConfig {
+  readonly service: ReturnType<typeof serviceFactory>;
+  readonly observer: EventEmitter;
+}
 
 export default ({ service, observer }: FactoryConfig) => {
   return (

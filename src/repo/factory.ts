@@ -1,9 +1,38 @@
+import Facade from '@js-entity-repos/core/dist/Facade';
 import memoryFactory from '@js-entity-repos/memory/dist/factory';
-import Facade from './Facade';
-import FactoryConfig from './FactoryConfig';
+import TodoEntity from '../utils/TodoEntity';
 
-export default ({ getState, patchState }: FactoryConfig): Facade => {
-  const todosFacade = memoryFactory({
+export interface FactoryConfig {
+  readonly emitChange: () => void;
+}
+
+export default ({ emitChange }: FactoryConfig) => {
+  const initialState = {
+    editedTitles: {} as { readonly [id: string]: string },
+    isEditing: {} as { readonly [id: string]: boolean },
+    newTodoTitle: '' as string,
+    route: '' as string,
+    todos: [] as TodoEntity[],
+  };
+
+  const getState = (): typeof initialState => {
+    const localStorageState = window.localStorage.getItem('state');
+    if (localStorageState === null) {
+      return initialState;
+    }
+    return JSON.parse(localStorageState);
+  };
+
+  const patchState = (patch: Partial<typeof initialState>) => {
+    const prevState = getState();
+    const nextState = { ...prevState, ...patch };
+    // tslint:disable-next-line:no-console
+    console.log('PATCH STATE', patch);
+    window.localStorage.setItem('state', JSON.stringify(nextState));
+    emitChange();
+  };
+
+  const todosFacade: Facade<TodoEntity> = memoryFactory({
     defaultPaginationLimit: 100,
     entityName: 'Todo',
     getEntities: () => getState().todos,
@@ -25,10 +54,10 @@ export default ({ getState, patchState }: FactoryConfig): Facade => {
         isEditing: { ...getState().isEditing, [id]: isEditing },
       });
     },
-    setNewTodoTitle: (title) => {
+    setNewTodoTitle: (title: string) => {
       patchState({ newTodoTitle: title });
     },
-    setRoute: (route) => {
+    setRoute: (route: string) => {
       patchState({ route });
     },
     todos: todosFacade,

@@ -1,11 +1,11 @@
 import repoFactory from '../repo/factory';
 import serviceFactory from '../service/factory';
 import observer from '../utils/observer';
-import AppConfig from './AppConfig';
 import factory from './factory';
 
-export default (config: AppConfig) => {
-  const repo = repoFactory(config.repo);
+export default () => {
+  const emitChange = () => observer.emit('change');
+  const repo = repoFactory({ emitChange });
   const service = serviceFactory({ repo });
   const presenter = factory({ service, observer });
 
