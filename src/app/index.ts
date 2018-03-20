@@ -1,5 +1,5 @@
 import * as dom from 'react-dom';
-import app from './app';
+import factory from './factory';
 
 const element = document.getElementsByClassName('todoapp')[0];
-dom.render(app(), element);
+dom.render(factory(), element);
