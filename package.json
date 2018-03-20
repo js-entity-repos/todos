@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@js-entity-repos/core": "^6.0.2",
-    "@js-entity-repos/memory": "^3.0.1",
+    "@js-entity-repos/memory": "^4.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
