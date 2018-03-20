@@ -1,9 +1,10 @@
+import { EventEmitter } from 'events';
 import repoFactory from '../repo/factory';
 import serviceFactory from '../service/factory';
-import observer from '../utils/observer';
 import factory from './factory';
 
 export default () => {
+  const observer = new EventEmitter();
   const emitChange = () => observer.emit('change');
   const repo = repoFactory({ emitChange });
   const service = serviceFactory({ repo });
