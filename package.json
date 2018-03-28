@@ -28,7 +28,7 @@
     "check-coverage": true
   },
   "dependencies": {
-    "@js-entity-repos/core": "^7.1.0",
+    "@js-entity-repos/core": "^8.0.0",
     "@js-entity-repos/memory": "^4.0.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
