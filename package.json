@@ -51,7 +51,7 @@
     "parcel-bundler": "1.8.1",
     "power-assert": "1.5.0",
     "rimraf": "2.6.2",
-    "typescript": "2.8.4"
+    "typescript": "2.9.1"
   },
   "publishConfig": {
     "access": "public"
