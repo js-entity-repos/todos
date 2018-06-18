@@ -45,7 +45,7 @@
     "@types/react-dom": "16.0.6",
     "assert-rejects": "0.1.1",
     "gh-pages": "1.2.0",
-    "jscpd": "0.6.20",
+    "jscpd": "0.6.21",
     "mocha": "5.2.0",
     "nyc": "11.9.0",
     "parcel-bundler": "1.9.1",
