@@ -50,7 +50,7 @@
     "nyc": "11.9.0",
     "parcel-bundler": "1.12.3",
     "power-assert": "1.6.1",
-    "rimraf": "2.7.0",
+    "rimraf": "2.7.1",
     "typescript": "2.9.2"
   },
   "publishConfig": {
