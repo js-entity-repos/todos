@@ -43,7 +43,7 @@
     "@types/prop-types": "15.7.3",
     "@types/react": "16.4.2",
     "@types/react-dom": "16.0.8",
-    "assert-rejects": "0.1.1",
+    "assert-rejects": "1.0.0",
     "gh-pages": "1.2.0",
     "jscpd": "0.6.25",
     "mocha": "5.2.0",
