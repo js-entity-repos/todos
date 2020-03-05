@@ -1,5 +1,5 @@
 # todos
-> Demonstrates js-entity-repos with todos.
+> Demonstrates js-entity-repos with todos. test
 
 [Checkout the Github pages demonstration](https://js-entity-repos.github.io/todos/).
 
